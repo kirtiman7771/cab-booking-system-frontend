@@ -1,0 +1,22 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <div class="header">
+      <h2 class="header-message">{{headerMessage()}}</h2>
+      <button 
+        class="cancel-button" 
+        (click)="closeModal(); $event.stopPropagation();">
+        &times;
+      </button>
+    </div>
+
+    <div class="content-container">
+      <div *ngIf="showCarData">
+        <app-car-selection 
+        ></app-car-selection>
+      </div>
+      <div class="confirmed-screen" *ngIf="showConfirmScreen">
+        <app-confirmed-ride-screen [rideId]="rideId"></app-confirmed-ride-screen>
+      </div>
+    </div>
+  </div>
+</div>

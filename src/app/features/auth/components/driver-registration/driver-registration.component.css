@@ -1,0 +1,76 @@
+/* Custom styles to match the React component's look and feel using Bootstrap classes */
+
+.bg-gray-50 {
+  background-color: #f9fafb;
+}
+
+.border-gray-200 {
+  border-color: #e5e7eb;
+}
+
+.text-gray-600 {
+  color: #4b5563;
+}
+
+.bg-black\/10 {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.btn-ghost {
+  color: #4b5563;
+  transition: color 0.2s ease-in-out;
+}
+
+.btn-ghost:hover {
+  color: #000000;
+  background-color: transparent;
+}
+
+.badge.bg-gray-100 {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.btn-outline-secondary {
+  border-color: #d1d5db;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #f9fafb;
+}
+
+.btn-dark {
+  background-color: #000000;
+  border-color: #000000;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-dark:hover {
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.nav-tabs .nav-link {
+  color: #4b5563;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-tabs .nav-link.active {
+  color: #000000;
+  background-color: transparent;
+  border-color: #000000;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+.form-control:disabled {
+  background-color: #f3f4f6;
+  opacity: 1;
+}

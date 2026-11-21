@@ -1,0 +1,360 @@
+/* --- SOPHISTICATED EARTHY COLOR PALETTE (Matching Car Selection) --- */
+:host {
+  /* Primary Colors */
+  --color-primary: #B7E5CD;           /* Mint Green - Primary actions & light elements */
+  --color-primary-light: #E8F5F0;     /* Very light mint - Backgrounds */
+  --color-primary-dark: #8ABEB9;      /* Teal - Darker accents */
+  
+  /* Secondary (Teal) */
+  --color-secondary: #8ABEB9;         /* Teal - Secondary actions */
+  --color-secondary-light: #B7E5CD;   /* Light teal - Backgrounds */
+  --color-secondary-dark: #6A9FAB;    /* Darker teal */
+  
+  /* Accent (Deep Navy) */
+  --color-accent: #305669;            /* Deep Navy - Headers, important elements */
+  --color-accent-light: #4A7085;      /* Lighter navy */
+  --color-accent-dark: #1F3A47;       /* Darker navy */
+  
+  /* Tertiary (Terracotta) */
+  --color-tertiary: #C1785A;          /* Terracotta - Warnings & errors */
+  --color-tertiary-light: #E5B5A0;    /* Light terracotta */
+  --color-tertiary-dark: #A85D3F;     /* Dark terracotta */
+  
+  /* Neutrals */
+  --color-dark: #305669;              /* Deep Navy - Dark text */
+  --color-text: #3D4D56;              /* Navy-tinted text */
+  --color-text-light: #6A7F88;        /* Medium gray-blue */
+  --color-text-lighter: #95A8B5;      /* Light gray-blue */
+  --color-border: #D1E8E0;            /* Light mint border */
+  --color-border-light: #E8F5F0;      /* Very light border */
+  
+  /* Backgrounds */
+  --color-bg-primary: #FFFFFF;        /* White - Cards */
+  --color-bg-secondary: #E8F5F0;      /* Very light mint - Secondary bg */
+  --color-bg-page: #F5FAF8;           /* Off-white page bg */
+  
+  /* Shadows (Navy-tinted) */
+  --shadow-sm: 0 1px 2px 0 rgba(48, 86, 105, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(48, 86, 105, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(48, 86, 105, 0.12);
+  --shadow-xl: 0 20px 25px -5px rgba(48, 86, 105, 0.15);
+  
+  font-family: 'Inter', 'Segoe UI', '-apple-system', sans-serif;
+}
+
+/* ================================================ */
+/* ===== MODAL OVERLAY ===== */
+/* ================================================ */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(48, 86, 105, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ================================================ */
+/* ===== MODAL CONTENT CONTAINER ===== */
+/* ================================================ */
+
+.modal-content {
+  background: var(--color-bg-primary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-xl);
+  height: 75%;
+  width: 90%;
+  max-width: 550px;
+  padding: 24px;
+  position: relative;
+  animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text);
+  font-family: 'Inter', 'Segoe UI', '-apple-system', sans-serif;
+  box-sizing: border-box;
+  border: 1px solid var(--color-border-light);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ================================================ */
+/* ===== HEADER SECTION ===== */
+/* ================================================ */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.header-message {
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  flex-grow: 1;
+  text-align: center;
+  color: var(--color-accent);
+  margin: 0 40px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+}
+
+/* ================================================ */
+/* ===== CANCEL BUTTON ===== */
+/* ================================================ */
+
+.cancel-button {
+  background: transparent;
+  border: none;
+  font-size: clamp(1.6rem, 5vw, 2rem);
+  color: var(--color-text-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: clamp(32px, 6vw, 40px);
+  height: clamp(32px, 6vw, 40px);
+  border-radius: 50%;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.cancel-button:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.cancel-button:active {
+  transform: scale(0.95);
+}
+
+/* ================================================ */
+/* ===== CONTENT CONTAINER ===== */
+/* ================================================ */
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  border-radius: 12px;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  gap: 0;
+}
+
+/* Custom Scrollbar Styles */
+.content-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content-container::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+  border-radius: 10px;
+}
+
+.content-container::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.content-container::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* ================================================ */
+/* ===== CONFIRMED SCREEN ===== */
+/* ================================================ */
+
+.confirmed-screen {
+  animation: fadeInScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ================================================ */
+/* ===== RESPONSIVE DESIGN ===== */
+/* ================================================ */
+
+@media (max-width: 1024px) {
+  .modal-content {
+    height: 80%;
+    max-width: 90%;
+    padding: 22px;
+  }
+
+  .header-message {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    height: 85%;
+    width: 95%;
+    max-width: 100%;
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .header {
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+    gap: 12px;
+  }
+
+  .header-message {
+    font-size: 1.3rem;
+    margin: 0 32px;
+  }
+
+  .cancel-button {
+    font-size: 1.5rem;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-overlay {
+    align-items: flex-end;
+    padding-bottom: 0;
+  }
+
+  .modal-content {
+    height: 90%;
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+    border-radius: 16px 16px 0 0;
+    border-bottom: none;
+  }
+
+  .header {
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+  }
+
+  .header-message {
+    font-size: 1.2rem;
+    margin: 0 28px;
+  }
+
+  .cancel-button {
+    font-size: 1.4rem;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    height: 92%;
+    padding: 14px;
+    border-radius: 14px 14px 0 0;
+  }
+
+  .header {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    gap: 8px;
+  }
+
+  .header-message {
+    font-size: 1.1rem;
+    margin: 0 24px;
+  }
+
+  .cancel-button {
+    font-size: 1.3rem;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+  }
+
+  .content-container {
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .modal-content {
+    height: 95%;
+    padding: 12px;
+  }
+
+  .header {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  .header-message {
+    font-size: 1rem;
+    margin: 0 20px;
+  }
+
+  .cancel-button {
+    font-size: 1.2rem;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+  }
+}

@@ -1,0 +1,455 @@
+<div class="min-vh-100" style=" background:#f2f8e8">
+    <div class="container-fluid px-5 py-0">
+        <div class="row gx-5 py-3 px-5">
+            <div class="col-lg-6 mb-5 mb-lg-0 py-5">
+                <div class="pe-lg-5 mt-3">
+                    <h2 class="h1 text-dark mb-4">Drive with Vector</h2>
+                    <p class="lead text-secondary ">
+                        Join thousands of drivers earning on their own schedule with Vector's premium ride-sharing
+                        platform.
+                    </p>
+                    <div class="mt-5">
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="p-3 rounded-lg me-3">
+                                <i class="bi bi-currency-rupee h4 text-dark mb-0"></i>
+                            </div>
+                            <div>
+                                <h3 class="h5 text-dark">Competitive Earnings</h3>
+                                <p class="text-secondary ">Earn up to ₹125/hour with our premium pricing and
+                                    driver-friendly commission structure.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="p-3 rounded-lg me-3">
+                                <i class="bi bi-clock h4 text-dark mb-0"></i>
+                            </div>
+                            <div>
+                                <h3 class="h5 text-dark">Flexible Schedule</h3>
+                                <p class="text-secondary">Drive when you want. Set your own hours and work around your
+                                    life.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="p-3 rounded-lg me-3">
+                                <i class="bi bi-shield-check h4 text-dark mb-0"></i>
+                            </div>
+                            <div>
+                                <h3 class="h5 text-dark">Safety First</h3>
+                                <p class="text-secondary">Comprehensive insurance coverage and 24/7 support to keep you
+                                    protected.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="p-3 rounded-lg me-3">
+                                <i class="bi bi-car-front h4 text-dark mb-0"></i>
+                            </div>
+                            <div>
+                                <h3 class="h5 text-dark">Vehicle Support</h3>
+                                <p class="text-secondary">Access to vehicle maintenance programs and rental options if
+                                    needed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card shadow-lg border-0 rounded-5">
+                    <div class="card-body p-5">
+                        <ul class="nav nav-tabs nav-justified mb-4" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link rounded-5" [class.active]="activeTab === 'signup'"
+                                    (click)="activeTab = 'signup'" type="button">
+                                    Sign Up
+                                </button>
+                            </li>
+                            <li class="nav-item " role="presentation">
+                                <button class="nav-link rounded-5" [class.active]="activeTab === 'login'"
+                                    (click)="activeTab = 'login'" type="button">
+                                    Log In
+                                </button>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade" [class.show]="activeTab === 'signup'"
+                                [class.active]="activeTab === 'signup'">
+                                <form [formGroup]="registrationForm" (ngSubmit)="handleSignup()">
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between small text-secondary mb-2">
+                                            <span>Step {{currentStep}} of {{totalSteps}}</span>
+                                            <span>{{progressPercentage}}% Complete</span>
+                                        </div>
+                                        <div class="progress" style="height: 8px;">
+                                            <div class="progress-bar bg-dark" role="progressbar"
+                                                [style.width]="progressPercentage + '%'"
+                                                [attr.aria-valuenow]="progressPercentage" [attr.aria-valuemin]="0"
+                                                [attr.aria-valuemax]="100"></div>
+                                        </div>
+                                    </div>
+                                    <div formGroupName="personalDetails" *ngIf="currentStep === 1">
+                                        <div class="text-center mb-4">
+                                            <h3 class="h5 text-dark mb-2">Personal Information</h3>
+                                            <p class="small text-secondary">Let's start with your basic details</p>
+                                        </div>
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label for="firstName" class="form-label">First Name *</label>
+                                                <input type="text" id="firstName" formControlName="firstName"
+                                                    class="form-control"
+                                                    [class.is-invalid]="currentStepGroup.get('firstName')?.invalid && currentStepGroup.get('firstName')?.touched" />
+                                                <div *ngIf="currentStepGroup.get('firstName')?.invalid && currentStepGroup.get('firstName')?.touched"
+                                                    class="invalid-feedback">
+                                                    First Name is required.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="lastName" class="form-label">Last Name *</label>
+                                                <input type="text" id="lastName" formControlName="lastName"
+                                                    class="form-control"
+                                                    [class.is-invalid]="currentStepGroup.get('lastName')?.invalid && currentStepGroup.get('lastName')?.touched" />
+                                                <div *ngIf="currentStepGroup.get('lastName')?.invalid && currentStepGroup.get('lastName')?.touched"
+                                                    class="invalid-feedback">
+                                                    Last Name is required.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email Address *</label>
+                                            <input type="email" id="email" formControlName="email" class="form-control"
+                                                [class.is-invalid]="currentStepGroup.get('email')?.invalid && currentStepGroup.get('email')?.touched" />
+                                            <div *ngIf="currentStepGroup.get('email')?.invalid && currentStepGroup.get('email')?.touched"
+                                                class="invalid-feedback">
+                                                <span *ngIf="currentStepGroup.get('email')?.errors?.['required']">Email
+                                                    is required.</span>
+                                                <span *ngIf="currentStepGroup.get('email')?.errors?.['email']">A valid
+                                                    email is required.</span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="phone" class="form-label">Phone Number *</label>
+                                            <input type="tel" id="phone" formControlName="phone" class="form-control"
+                                                placeholder="+91 (000) 123-4567"
+                                                [class.is-invalid]="currentStepGroup.get('phone')?.invalid && currentStepGroup.get('phone')?.touched" />
+                                            <div *ngIf="currentStepGroup.get('phone')?.errors?.['required'] && currentStepGroup.get('phone')?.touched"
+                                                class="invalid-feedback">
+                                                Phone number is required.
+                                            </div>
+                                            <div *ngIf="currentStepGroup.get('phone')?.errors?.['pattern'] && currentStepGroup.get('phone')?.touched"
+                                                class="invalid-feedback">
+                                                Phone number must be exactly 10 digits.
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label for="dateOfBirth" class="form-label">Date of Birth *</label>
+                                                <input type="date" id="dateOfBirth" formControlName="dateOfBirth"
+                                                    class="form-control"
+                                                    [class.is-invalid]="currentStepGroup.get('dateOfBirth')?.invalid && currentStepGroup.get('dateOfBirth')?.touched" />
+                                                <div *ngIf="currentStepGroup.get('dateOfBirth')?.invalid && currentStepGroup.get('dateOfBirth')?.touched"
+                                                    class="invalid-feedback">
+                                                    Date of Birth is required.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="age" class="form-label">Age</label>
+                                                <input type="text" id="age"
+                                                    [value]="calculateAge(currentStepGroup.get('dateOfBirth')?.value)"
+                                                    class="form-control bg-light" disabled />
+                                            </div>
+                                        </div>
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label for="password" class="form-label">Password *</label>
+                                                <input type="password" id="password" formControlName="password"
+                                                    class="form-control"
+                                                    [class.is-invalid]="currentStepGroup.get('password')?.invalid && currentStepGroup.get('password')?.touched" />
+                                                <div *ngIf="currentStepGroup.get('password')?.invalid && currentStepGroup.get('password')?.touched"
+                                                    class="invalid-feedback">
+                                                    Password must be at least 8 characters.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="confirmPassword" class="form-label">Confirm Password
+                                                    *</label>
+                                                <input type="password" id="confirmPassword"
+                                                    formControlName="confirmPassword" class="form-control"
+                                                    [class.is-invalid]="currentStepGroup.get('confirmPassword')?.invalid && currentStepGroup.get('confirmPassword')?.touched || currentStepGroup.hasError('passwordMismatch') && currentStepGroup.get('confirmPassword')?.touched" />
+                                                <div *ngIf="currentStepGroup.get('confirmPassword')?.invalid && currentStepGroup.get('confirmPassword')?.touched"
+                                                    class="invalid-feedback">
+                                                    Confirm Password is required.
+                                                </div>
+                                                <div *ngIf="currentStepGroup.hasError('passwordMismatch') && currentStepGroup.get('confirmPassword')?.touched"
+                                                    class="invalid-feedback d-block">
+                                                    Passwords do not match.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div formGroupName="driverDetails" *ngIf="currentStep === 2">
+                                        <div class="text-center mb-4">
+                                            <h3 class="h5 text-dark mb-2">Driver License Information</h3>
+                                            <p class="small text-secondary">Your driving credentials and experience</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="licenseNumber" class="form-label">Driver's License Number
+                                                *</label>
+                                            <input type="text" id="licenseNumber" formControlName="licenseNumber"
+                                                class="form-control" placeholder="D123456789"
+                                                [class.is-invalid]="currentStepGroup.get('licenseNumber')?.invalid && currentStepGroup.get('licenseNumber')?.touched" />
+                                            <div *ngIf="currentStepGroup.get('licenseNumber')?.invalid && currentStepGroup.get('licenseNumber')?.touched"
+                                                class="invalid-feedback">
+                                                License number is required.
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="licenseExpiry" class="form-label">License Expiry Date *</label>
+                                            <input type="date" id="licenseExpiry" formControlName="licenseExpiry"
+                                                class="form-control"
+                                                [class.is-invalid]="currentStepGroup.get('licenseExpiry')?.invalid && currentStepGroup.get('licenseExpiry')?.touched" />
+                                            <div *ngIf="currentStepGroup.get('licenseExpiry')?.invalid && currentStepGroup.get('licenseExpiry')?.touched"
+                                                class="invalid-feedback">
+                                                <span
+                                                    *ngIf="currentStepGroup.get('licenseExpiry')?.errors?.['required']">License
+                                                    Expiry is required.</span>
+                                                <span
+                                                    *ngIf="currentStepGroup.get('licenseExpiry')?.errors?.['pastDate']">Expiry
+                                                    date must be in the future.</span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="experience" class="form-label">Years of Driving Experience
+                                                *</label>
+                                            <input type="number" id="experience" formControlName="experience"
+                                                class="form-control" placeholder="5" min="1"
+                                                [class.is-invalid]="currentStepGroup.get('experience')?.invalid && currentStepGroup.get('experience')?.touched" />
+                                            <div *ngIf="currentStepGroup.get('experience')?.invalid && currentStepGroup.get('experience')?.touched"
+                                                class="invalid-feedback">
+                                                Experience is required (min 1 year).
+                                            </div>
+                                        </div>
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label for="emergencyName" class="form-label">Emergency Contact Name
+                                                    *</label>
+                                                <input type="text" id="emergencyName" formControlName="emergencyName"
+                                                    class="form-control"
+                                                    [class.is-invalid]="currentStepGroup.get('emergencyName')?.invalid && currentStepGroup.get('emergencyName')?.touched" />
+                                                <div *ngIf="currentStepGroup.get('emergencyName')?.invalid && currentStepGroup.get('emergencyName')?.touched"
+                                                    class="invalid-feedback">
+                                                    Emergency Contact Name is required.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="emergencyPhone" class="form-label">Emergency Contact Phone
+                                                    *</label>
+                                                <input type="tel" id="emergencyPhone" formControlName="emergencyPhone"
+                                                    class="form-control"
+                                                    [class.is-invalid]="currentStepGroup.get('emergencyPhone')?.invalid && currentStepGroup.get('emergencyPhone')?.touched" />
+                                                <div *ngIf="currentStepGroup.get('emergencyPhone')?.invalid && currentStepGroup.get('emergencyPhone')?.touched"
+                                                    class="invalid-feedback">
+                                                    Emergency Contact Phone is required.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="emergencyRelation" class="form-label">Relationship to Emergency
+                                                Contact *</label>
+                                            <input type="text" id="emergencyRelation"
+                                                formControlName="emergencyRelation" class="form-control"
+                                                placeholder="Spouse, Parent, Sibling, etc."
+                                                [class.is-invalid]="currentStepGroup.get('emergencyRelation')?.invalid && currentStepGroup.get('emergencyRelation')?.touched" />
+                                            <div *ngIf="currentStepGroup.get('emergencyRelation')?.invalid && currentStepGroup.get('emergencyRelation')?.touched"
+                                                class="invalid-feedback">
+                                                Relationship is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div formGroupName="vehicleDetails" *ngIf="currentStep === 3">
+                                        <div class="text-center mb-4">
+                                            <h3 class="h5 text-dark mb-2">Vehicle Information</h3>
+                                            <p class="small text-secondary">Details about your vehicle</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="vehicleNumber" class="form-label">Vehicle License Plate
+                                                *</label>
+                                            <input type="text" id="vehicleNumber" formControlName="vehicleNumber"
+                                                class="form-control" placeholder="ABC 1234"
+                                                [class.is-invalid]="currentStepGroup.get('vehicleNumber')?.invalid && currentStepGroup.get('vehicleNumber')?.touched" />
+                                            <div *ngIf="currentStepGroup.get('vehicleNumber')?.invalid && currentStepGroup.get('vehicleNumber')?.touched"
+                                                class="invalid-feedback">
+                                                Vehicle License Plate is required.
+                                            </div>
+                                        </div>
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label for="vehicleMake" class="form-label">Make *</label>
+                                                <input type="text" id="vehicleMake" formControlName="vehicleMake"
+                                                    class="form-control" placeholder="Toyota"
+                                                    [class.is-invalid]="currentStepGroup.get('vehicleMake')?.invalid && currentStepGroup.get('vehicleMake')?.touched" />
+                                                <div *ngIf="currentStepGroup.get('vehicleMake')?.invalid && currentStepGroup.get('vehicleMake')?.touched"
+                                                    class="invalid-feedback">
+                                                    Vehicle Make is required.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="vehicleModel" class="form-label">Model *</label>
+                                                <input type="text" id="vehicleModel" formControlName="vehicleModel"
+                                                    class="form-control" placeholder="Camry"
+                                                    [class.is-invalid]="currentStepGroup.get('vehicleModel')?.invalid && currentStepGroup.get('vehicleModel')?.touched" />
+                                                <div *ngIf="currentStepGroup.get('vehicleModel')?.invalid && currentStepGroup.get('vehicleModel')?.touched"
+                                                    class="invalid-feedback">
+                                                    Vehicle Model is required.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label for="vehicleYear" class="form-label">Year *</label>
+                                                <input type="number" id="vehicleYear" formControlName="vehicleYear"
+                                                    class="form-control" placeholder="2022" min="2010" max="2025"
+                                                    [class.is-invalid]="currentStepGroup.get('vehicleYear')?.invalid && currentStepGroup.get('vehicleYear')?.touched" />
+                                                <div *ngIf="currentStepGroup.get('vehicleYear')?.invalid && currentStepGroup.get('vehicleYear')?.touched"
+                                                    class="invalid-feedback">
+                                                    A valid year is required (min 2010).
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="vehicleColor" class="form-label">Color *</label>
+                                                <input type="text" id="vehicleColor" formControlName="vehicleColor"
+                                                    class="form-control" placeholder="Silver"
+                                                    [class.is-invalid]="currentStepGroup.get('vehicleColor')?.invalid && currentStepGroup.get('vehicleColor')?.touched" />
+                                                <div *ngIf="currentStepGroup.get('vehicleColor')?.invalid && currentStepGroup.get('vehicleColor')?.touched"
+                                                    class="invalid-feedback">
+                                                    Vehicle Color is required.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div formGroupName="bankingDetails" *ngIf="currentStep === 4">
+                                        <div class="text-center mb-4">
+                                            <h3 class="h5 text-dark mb-2">Banking Information</h3>
+                                            <p class="small text-secondary">For receiving your earnings</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="bankAccount" class="form-label">Bank Account Number *</label>
+                                            <input type="text" id="bankAccount" formControlName="bankAccount"
+                                                class="form-control" placeholder="1234567890"
+                                                [class.is-invalid]="currentStepGroup.get('bankAccount')?.invalid && currentStepGroup.get('bankAccount')?.touched" />
+                                            <div *ngIf="currentStepGroup.get('bankAccount')?.invalid && currentStepGroup.get('bankAccount')?.touched"
+                                                class="invalid-feedback">
+                                                Bank Account is required.
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="routingNumber" class="form-label">Routing Number *</label>
+                                            <input type="text" id="routingNumber" formControlName="routingNumber"
+                                                class="form-control" placeholder="021000021"
+                                                [class.is-invalid]="currentStepGroup.get('routingNumber')?.invalid && currentStepGroup.get('routingNumber')?.touched" />
+                                            <div *ngIf="currentStepGroup.get('routingNumber')?.invalid && currentStepGroup.get('routingNumber')?.touched"
+                                                class="invalid-feedback">
+                                                Routing Number is required.
+                                            </div>
+                                        </div>
+                                        <div class="bg-light p-4 rounded">
+                                            <h4 class="h6 text-dark mb-3">Review Your Information</h4>
+                                            <div class="small">
+                                                <div class="d-flex justify-content-between mb-1">
+                                                    <span class="text-secondary">Name:</span>
+                                                    <span
+                                                        class="text-dark">{{registrationForm.get('personalDetails.firstName')?.value}}
+                                                        {{registrationForm.get('personalDetails.lastName')?.value}}</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-1">
+                                                    <span class="text-secondary">Email:</span>
+                                                    <span
+                                                        class="text-dark">{{registrationForm.get('personalDetails.email')?.value}}</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-1">
+                                                    <span class="text-secondary">Phone:</span>
+                                                    <span
+                                                        class="text-dark">{{registrationForm.get('personalDetails.phone')?.value}}</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-1">
+                                                    <span class="text-secondary">License:</span>
+                                                    <span
+                                                        class="text-dark">{{registrationForm.get('driverDetails.licenseNumber')?.value}}</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between mb-1">
+                                                    <span class="text-secondary">Vehicle:</span>
+                                                    <span
+                                                        class="text-dark">{{registrationForm.get('vehicleDetails.vehicleMake')?.value}}
+                                                        {{registrationForm.get('vehicleDetails.vehicleModel')?.value}}
+                                                        ({{registrationForm.get('vehicleDetails.vehicleNumber')?.value}})</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-4">
+                                        <button *ngIf="currentStep > 1" type="button" class="btn btn-outline-secondary"
+                                            (click)="currentStep = currentStep - 1">
+                                            Previous
+                                        </button>
+                                        <button type="submit" class="btn btn-dark ms-auto"
+                                            [disabled]="currentStepGroup.invalid">
+                                            {{currentStep === totalSteps ? 'Complete Registration' : 'Next'}}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" [class.show]="activeTab === 'login'"
+                                [class.active]="activeTab === 'login'">
+                                <form [formGroup]="loginForm" (ngSubmit)="handleLogin()" class="space-y-4">
+                                    <div class="text-center mb-4">
+                                        <h3 class="h5 text-dark mb-2">Welcome Back, Driver</h3>
+                                        <p class="small text-secondary">Sign in to access your driver dashboard</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="loginEmail" class="form-label">Email</label>
+                                        <input type="email" id="loginEmail" formControlName="email" class="form-control"
+                                            placeholder="Enter your email"
+                                            [class.is-invalid]="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)" />
+                                        <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
+                                            class="invalid-feedback">
+                                            <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is
+                                                required.</span>
+                                            <span *ngIf="loginForm.get('email')?.errors?.['email']">A valid email is
+                                                required.</span>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="loginPassword" class="form-label">Password</label>
+                                        <input type="password" id="loginPassword" formControlName="password"
+                                            class="form-control" placeholder="Enter your password"
+                                            [class.is-invalid]="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" />
+                                        <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+                                            class="invalid-feedback">
+                                            <div *ngIf="loginForm.get('password')?.errors?.['required']">
+                                                Password is required.
+                                            </div>
+                                            <div *ngIf="loginForm.get('password')?.errors?.['minlength']">
+                                                Password must be at least 8 characters long.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark w-100" [disabled]="loginForm.invalid">
+                                        Sign In
+                                    </button>
+                                    <div class="position-relative text-center">
+                                        <hr class="text-muted">
+                                        <span
+                                            class="badge bg-white text-muted position-absolute top-50 start-50 translate-middle">or</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-link text-secondary text-decoration-none">
+                                            Forgot your password?
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

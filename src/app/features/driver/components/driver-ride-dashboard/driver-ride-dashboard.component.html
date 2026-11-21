@@ -1,0 +1,122 @@
+<div class="dashboard">
+    <div class="dashboard-content">
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="icon-wrapper"><i class="fas fa-star"></i></div>
+                <div>
+                    <h3>Driver Rating</h3>
+                    <p>{{ dashboardData.driverRating }}</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="icon-wrapper"><i class="fas fa-inr"></i></div>
+                <div>
+                    <h3>Today's Earnings</h3>
+                    <p>{{ dashboardData?.todaysEarnings?.toFixed(2) || '0.00' }}</p>
+
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="icon-wrapper"><i class="fas fa-inr"></i></div>
+                <div>
+                    <h3>Weekly Earnings</h3>
+                    <p>{{ dashboardData?.weeklyEarningsAchieved?.toFixed(2) || '0.00' }}</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="icon-wrapper"><i class="fas fa-car-side"></i></div>
+                <div>
+                    <h3>Today's Rides</h3>
+                    <p>{{ dashboardData?.todaysRides || 0 }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-container">
+                <h2>Weekly Goals Progress</h2>
+
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Earnings Goal</span>
+                        <span id="earningsProgress">₹{{ dashboardData.weeklyEarningsAchieved | number:'1.2-2' }} / ₹{{
+                            dashboardData.weeklyEarningsGoal | number:'1.2-2' }}</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" [style.width]="dashboardData.weeklyGoals?.earnings.completion + '%'"
+                            [style.backgroundColor]="dashboardData.weeklyGoals?.earnings.completion >= 100 ? '#28a745' : (dashboardData.weeklyGoals?.earnings.completion > 75 ? '#ffc107' : '#007bff')">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Rides Goal</span>
+                        <span id="ridesProgress">{{ dashboardData.weeklyRidesAchieved }} / {{
+                            dashboardData.weeklyRidesGoal
+                            }} Rides</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" [style.width]="dashboardData.weeklyGoals?.rides.completion + '%'"
+                            [style.backgroundColor]="dashboardData.weeklyGoals?.rides.completion >= 100 ? '#28a745' : (dashboardData.weeklyGoals?.rides.completion > 75 ? '#ffc107' : '#007bff')">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span>Rating Maintenance</span>
+                        <span id="ratingProgress">{{ dashboardData.ratingMaintenanceAchieved | number:'1.1-1' }} / {{
+                            dashboardData.ratingMaintenanceGoal | number:'1.1-1' }}</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" [style.width]="dashboardData.weeklyGoals?.rating.completion + '%'"
+                            [style.backgroundColor]="dashboardData.weeklyGoals?.rating.completion >= 100 ? '#28a745' : '#007bff'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h2>Acceptance Rate</h2>
+                <div class="progress-item" style="width: 100%;">
+                    <div class="progress-label">
+                        <span>Acceptance Goal</span>
+                        <span id="acceptanceProgress">{{ (dashboardData.acceptanceRateAchieved * 100) | number:'1.0-0'
+                            }}% /
+                            {{ (dashboardData.acceptanceRateGoal * 100) | number:'1.0-0' }}%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"
+                            [style.width]="dashboardData.weeklyGoals?.acceptance.completion + '%'"
+                            [style.backgroundColor]="dashboardData.weeklyGoals?.acceptance.completion >= 100 ? '#28a745' : '#17a2b8'">
+                        </div>
+                    </div>
+                </div>
+                <div class="acceptance-rate">
+                    <div class="value" id="acceptanceRate">{{ (dashboardData.acceptanceRateAchieved * 100) |
+                        number:'1.0-0'
+                        }}%</div>
+                    <span class="card-comparison">
+                        Maintain high acceptance for bonuses!
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="motivational-panel"
+            [ngClass]="{'great-job': goalsAchievedCount > 0, 'keep-going': goalsAchievedCount === 0}">
+            <ng-container *ngIf="goalsAchievedCount === 4">
+                <h3>🎉 All Goals Achieved! 🎉</h3>
+                <p>You smashed it this week! Keep up the five-star service.</p>
+            </ng-container>
+            <ng-container *ngIf="goalsAchievedCount > 0 && goalsAchievedCount < 4">
+                <h3>Good Progress!</h3>
+                <p>You've crushed <b>{{ goalsAchievedCount }} out of 4</b> goals. Only a few steps away from a bonus!</p>
+            </ng-container>
+            <ng-container *ngIf="goalsAchievedCount === 0">
+                <h3>Time to Accelerate! 🚀</h3>
+                <p>Let's focus on those high-earning rides today to start hitting your goals.</p>
+            </ng-container>
+        </div>
+    </div>
+</div>

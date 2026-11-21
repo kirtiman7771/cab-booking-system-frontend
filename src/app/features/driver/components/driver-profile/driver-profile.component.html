@@ -1,0 +1,300 @@
+<div class="driver-profile-container">
+    <h2>Update Driver Profile</h2>
+
+    <form [formGroup]="driverForm" (ngSubmit)="onSubmit()">
+        <!-- Personal Details Section -->
+        <div formGroupName="personalDetails" class="form-section">
+            <h3>Personal Details</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="firstName">First Name</label>
+                    <input 
+                        id="firstName" 
+                        type="text" 
+                        [(ngModel)]="driverData.personalDetails.firstName" 
+                        formControlName="firstName"
+                        placeholder="Enter first name"
+                    >
+                    <div *ngIf="driverForm.get('personalDetails.firstName')?.invalid && driverForm.get('personalDetails.firstName')?.touched"
+                        class="validation-error">
+                        First Name is required.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="lastName">Last Name</label>
+                    <input 
+                        id="lastName" 
+                        type="text" 
+                        [(ngModel)]="driverData.personalDetails.lastName" 
+                        formControlName="lastName"
+                        placeholder="Enter last name"
+                    >
+                    <div *ngIf="driverForm.get('personalDetails.lastName')?.invalid && driverForm.get('personalDetails.lastName')?.touched"
+                        class="validation-error">
+                        Last Name is required.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input 
+                        id="email" 
+                        type="email" 
+                        [(ngModel)]="driverData.personalDetails.email" 
+                        formControlName="email" 
+                        readonly
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="phone">Phone</label>
+                    <input 
+                        id="phone" 
+                        type="tel" 
+                        [(ngModel)]="driverData.personalDetails.phone" 
+                        formControlName="phone"
+                        placeholder="Enter phone number"
+                    >
+                    <div *ngIf="driverForm.get('personalDetails.phone')?.invalid && driverForm.get('personalDetails.phone')?.touched"
+                        class="validation-error">
+                        Please enter a 10-digit phone number.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="dateOfBirth">Date of Birth</label>
+                    <input 
+                        id="dateOfBirth" 
+                        type="date" 
+                        [(ngModel)]="driverData.personalDetails.dateOfBirth" 
+                        formControlName="dateOfBirth"
+                    >
+                    <div *ngIf="driverForm.get('personalDetails.dateOfBirth')?.invalid && driverForm.get('personalDetails.dateOfBirth')?.touched"
+                        class="validation-error">
+                        Date of Birth is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Driver Details Section -->
+        <div formGroupName="driverDetails" class="form-section">
+            <h3>Driver Details</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="licenseNumber">License Number</label>
+                    <input 
+                        id="licenseNumber" 
+                        type="text" 
+                        [(ngModel)]="driverData.driverDetails.licenseNumber" 
+                        formControlName="licenseNumber"
+                        placeholder="Enter license number"
+                    >
+                    <div *ngIf="driverForm.get('driverDetails.licenseNumber')?.invalid && driverForm.get('driverDetails.licenseNumber')?.touched"
+                        class="validation-error">
+                        License Number is required.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="licenseExpiry">License Expiry</label>
+                    <input 
+                        id="licenseExpiry" 
+                        type="date" 
+                        [(ngModel)]="driverData.driverDetails.licenseExpiry" 
+                        formControlName="licenseExpiry"
+                    >
+                    <div *ngIf="driverForm.get('driverDetails.licenseExpiry')?.invalid && driverForm.get('driverDetails.licenseExpiry')?.touched"
+                        class="validation-error">
+                        License Expiry is required.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="experience">Experience (Years)</label>
+                    <input 
+                        id="experience" 
+                        type="number" 
+                        [(ngModel)]="driverData.driverDetails.experience" 
+                        formControlName="experience"
+                        placeholder="Enter years of experience"
+                    >
+                    <div *ngIf="driverForm.get('driverDetails.experience')?.invalid && driverForm.get('driverDetails.experience')?.touched"
+                        class="validation-error">
+                        Experience is required and must be a number.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="emergencyName">Emergency Contact Name</label>
+                    <input 
+                        id="emergencyName" 
+                        type="text" 
+                        [(ngModel)]="driverData.driverDetails.emergencyName" 
+                        formControlName="emergencyName"
+                        placeholder="Enter emergency contact name"
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="emergencyPhone">Emergency Contact Phone</label>
+                    <input 
+                        id="emergencyPhone" 
+                        type="tel" 
+                        [(ngModel)]="driverData.driverDetails.emergencyPhone" 
+                        formControlName="emergencyPhone"
+                        placeholder="Enter emergency contact phone"
+                    >
+                    <div *ngIf="driverForm.get('driverDetails.emergencyPhone')?.invalid && driverForm.get('driverDetails.emergencyPhone')?.touched"
+                        class="validation-error">
+                        Please enter a valid 10-digit phone number.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="emergencyRelation">Emergency Contact Relation</label>
+                    <input 
+                        id="emergencyRelation" 
+                        type="text" 
+                        [(ngModel)]="driverData.driverDetails.emergencyRelation" 
+                        formControlName="emergencyRelation"
+                        placeholder="Enter relation to emergency contact"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- Vehicle Details Section -->
+        <div formGroupName="vehicleDetails" class="form-section">
+            <h3>Vehicle Details</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="vehicleNumber">Vehicle Number</label>
+                    <input 
+                        id="vehicleNumber" 
+                        type="text" 
+                        [(ngModel)]="driverData.vehicleDetails.vehicleNumber" 
+                        formControlName="vehicleNumber"
+                        placeholder="Enter vehicle number"
+                    >
+                    <div *ngIf="driverForm.get('vehicleDetails.vehicleNumber')?.invalid && driverForm.get('vehicleDetails.vehicleNumber')?.touched"
+                        class="validation-error">
+                        Vehicle Number is required.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="vehicleMake">Vehicle Make</label>
+                    <input 
+                        id="vehicleMake" 
+                        type="text" 
+                        [(ngModel)]="driverData.vehicleDetails.vehicleMake" 
+                        formControlName="vehicleMake"
+                        placeholder="Enter vehicle make"
+                    >
+                    <div *ngIf="driverForm.get('vehicleDetails.vehicleMake')?.invalid && driverForm.get('vehicleDetails.vehicleMake')?.touched"
+                        class="validation-error">
+                        Vehicle Make is required.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="vehicleModel">Vehicle Model</label>
+                    <input 
+                        id="vehicleModel" 
+                        type="text" 
+                        [(ngModel)]="driverData.vehicleDetails.vehicleModel" 
+                        formControlName="vehicleModel"
+                        placeholder="Enter vehicle model"
+                    >
+                    <div *ngIf="driverForm.get('vehicleDetails.vehicleModel')?.invalid && driverForm.get('vehicleDetails.vehicleModel')?.touched"
+                        class="validation-error">
+                        Vehicle Model is required.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="vehicleYear">Vehicle Year</label>
+                    <input 
+                        id="vehicleYear" 
+                        type="number" 
+                        [(ngModel)]="driverData.vehicleDetails.vehicleYear" 
+                        formControlName="vehicleYear"
+                        placeholder="Enter vehicle year"
+                    >
+                    <div *ngIf="driverForm.get('vehicleDetails.vehicleYear')?.invalid && driverForm.get('vehicleDetails.vehicleYear')?.touched"
+                        class="validation-error">
+                        Vehicle Year is required and must be a 4-digit number.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="vehicleColor">Vehicle Color</label>
+                    <input 
+                        id="vehicleColor" 
+                        type="text" 
+                        [(ngModel)]="driverData.vehicleDetails.vehicleColor" 
+                        formControlName="vehicleColor"
+                        placeholder="Enter vehicle color"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- Banking Details Section -->
+        <div formGroupName="bankingDetails" class="form-section">
+            <h3>Banking Details</h3>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="bankAccount">Bank Account</label>
+                    <input 
+                        id="bankAccount" 
+                        type="text" 
+                        [(ngModel)]="driverData.bankingDetails.bankAccount" 
+                        formControlName="bankAccount"
+                        placeholder="Enter bank account number"
+                    >
+                    <div *ngIf="driverForm.get('bankingDetails.bankAccount')?.invalid && driverForm.get('bankingDetails.bankAccount')?.touched"
+                        class="validation-error">
+                        Bank Account is required and must be a number.
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="routingNumber">Routing Number</label>
+                    <input 
+                        id="routingNumber" 
+                        type="text" 
+                        [(ngModel)]="driverData.bankingDetails.routingNumber" 
+                        formControlName="routingNumber"
+                        placeholder="Enter routing number"
+                    >
+                    <div *ngIf="driverForm.get('bankingDetails.routingNumber')?.invalid && driverForm.get('bankingDetails.routingNumber')?.touched"
+                        class="validation-error">
+                        Routing Number is required and must be a 9-digit number.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button 
+                type="submit" 
+                [disabled]="driverForm.invalid || isSubmitting"
+            >
+                <span *ngIf="isSubmitting">Saving...</span>
+                <span *ngIf="!isSubmitting">Save Changes</span>
+            </button>
+            <button 
+                type="button" 
+                (click)="onCancel()" 
+                [disabled]="isSubmitting"
+                [class.disabled-busy]="isSubmitting"
+            >
+                Cancel
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,82 @@
+.about {
+    /* Mimic .hero section's container styles */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align content to the top */
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background: #f2f8e8; /* Light green background from the Hero section */
+    gap: 4rem; /* Increased gap for better visual separation */
+}
+
+.about-content {
+    /* Allows content to take up a substantial, readable width */
+    max-width: 60%; 
+}
+
+.about h1 {
+    /* Title styling: Large and bold, matching the Hero's primary feeling */
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.about h2 {
+    /* Sub-heading styling */
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: black;
+}
+
+.about p {
+    /* Body text styling */
+    font-size: 1.1rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+}
+
+.about ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 2rem;
+}
+
+.about li {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+/* Custom bullet point using the primary green accent */
+.about li::before {
+    content: '✓'; /* Using a checkmark for a stronger "feature" feel */
+    color: #8cc63e; /* The light green accent color */
+    font-weight: 900; 
+    display: inline-block;
+    width: 1.5em;
+    position: absolute;
+    left: 0;
+}
+
+/* Optional Image Styling for a balanced layout */
+.about-image {
+    max-width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-image img {
+    /* Matches the look of the hero image with rounded corners */
+    max-width: 100%;
+    height: auto;
+    border-radius: 70px 0px 30px 0px; 
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}

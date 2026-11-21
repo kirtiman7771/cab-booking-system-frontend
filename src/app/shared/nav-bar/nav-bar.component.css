@@ -1,0 +1,125 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 1rem;
+    background: #fff;
+    gap: 3rem;
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        margin-right: auto;
+    }
+
+    li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .btn-login {
+            font-weight: 500;
+        }
+
+        .btn-signup {
+            background: black;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+    }
+}
+
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menus {
+    position: absolute;
+    top: 150%;
+    right: 0;
+    background-color: #c8e6a1;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 9999 !important;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dropdown-item {
+    /* display: block; */
+    padding: 8px 12px;
+    border: none;
+    background: white;
+    color: #222;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dropdown-item:hover {
+    background: #f2f2f2;
+    border: 1.5px solid black;
+}
+
+.dashboard-text {
+  color: #888;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-icon {
+  font-size: 24px;
+  color: #a0a0a0;
+}
+
+.user-info span {
+  font-weight: 600;
+  color: #333;
+}
+
+.logout-link {
+  color: #fb2803;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s ease-in-out;
+}
+
+.logout-link:hover {
+  color: #d62000;
+}

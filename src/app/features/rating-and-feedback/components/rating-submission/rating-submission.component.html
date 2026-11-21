@@ -1,0 +1,117 @@
+<div
+class="container p-4 rounded-4 shadow-lg"
+style="max-width: 600px; background-color: #f7f9fc; border: 1px solid #e0e6ed;"
+>
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+<h4 class="mb-0 text-dark fw-bold">Rate Your Ride 🚖</h4>
+<button class="btn-close" type="button" aria-label="Close" (click)="closeLogin()"></button>
+</div>
+
+<!-- Error Message Display -->
+
+@if (errorMessage) {
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+{{ errorMessage }}
+</div>
+}
+
+<!-- Card Body -->
+
+<div class="card-body bg-white p-4 rounded-3 border">
+<form (ngSubmit)="submitFeedback()">
+<!-- Rating Section -->
+<div class="mb-4">
+<label class="form-label fw-semibold text-dark d-block mb-3"
+>How was your experience?</label
+>
+
+    <div class="text-center">
+      <!-- Star Rating Group (Uses custom CSS) -->
+      <div class="star-cb-group d-inline-block">
+        <!-- 5 Star -->
+        <input
+          type="radio"
+          id="rating-5"
+          name="rating"
+          value="5"
+          [(ngModel)]="rating"
+          required
+        />
+        <label for="rating-5" title="Excellent"></label>
+
+        <!-- 4 Star -->
+        <input
+          type="radio"
+          id="rating-4"
+          name="rating"
+          value="4"
+          [(ngModel)]="rating"
+          required
+        />
+        <label for="rating-4" title="Very Good"></label>
+
+        <!-- 3 Star -->
+        <input
+          type="radio"
+          id="rating-3"
+          name="rating"
+          value="3"
+          [(ngModel)]="rating"
+          required
+        />
+        <label for="rating-3" title="Good"></label>
+
+        <!-- 2 Star -->
+        <input
+          type="radio"
+          id="rating-2"
+          name="rating"
+          value="2"
+          [(ngModel)]="rating"
+          required
+        />
+        <label for="rating-2" title="Fair"></label>
+
+        <!-- 1 Star -->
+        <input
+          type="radio"
+          id="rating-1"
+          name="rating"
+          value="1"
+          [(ngModel)]="rating"
+          required
+        />
+        <label for="rating-1" title="Poor"></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comments Section -->
+  <div class="mb-4">
+    <label for="comments" class="form-label fw-semibold text-dark">Your Comments (Optional)</label>
+    <textarea
+      class="form-control rounded-3 border border-secondary-subtle"
+      id="comments"
+      name="comments"
+      rows="3"
+      [(ngModel)]="comments"
+      placeholder="Share your experience..."
+    ></textarea>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="text-end">
+    <button 
+      type="submit" 
+      class="btn btn-primary px-4 fw-bold" 
+      [disabled]="rating === 0 || isSubmitting"
+    >
+      {{ isSubmitting ? 'Submitting...' : 'Submit Feedback' }}
+    </button>
+  </div>
+</form>
+
+
+</div>
+</div>

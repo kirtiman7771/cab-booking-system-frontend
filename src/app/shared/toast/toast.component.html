@@ -1,0 +1,20 @@
+<div *ngIf="currentMessage && currentMessage.isVisible" class="toast-container" [ngClass]="{
+       'toast-success': currentMessage.type === 'success',
+       'toast-error': currentMessage.type === 'error',
+       'bottom-left': currentMessage.type === 'success',  'top-right': currentMessage.type === 'error'      }">
+
+    <div class="toast-content">
+        <div class="toast-header">
+            <h3>
+                <i *ngIf="currentMessage.type === 'success'" class="bi bi-patch-check-fill"
+                    style="margin-right: 8px;"></i>
+                <i *ngIf="currentMessage.type === 'error'" class="bi bi-x-circle-fill" style="margin-right: 8px;"></i>
+                {{ currentMessage.type === 'success' ? 'Success' : 'Error' }}
+            </h3>
+            <button class="close-btn" (click)="hideMessage()">X</button>
+        </div>
+        <div class="toast-body">
+            <p class="message-text">{{ currentMessage.text }}</p>
+        </div>
+    </div>
+</div>

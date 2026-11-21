@@ -1,0 +1,15 @@
+<div class="upcoming-rides-container">
+  <h1 style="text-align: center; margin-bottom: 1.5rem;">Upcoming Rides</h1>
+  <div class="rides-wrapper">
+    @for (ride of totalRides; track ride.rideId) {
+      <div class="ride-item">
+        <app-ride-details [rideId]="ride.rideId"></app-ride-details>
+      </div>
+    }
+    @empty {
+      <h2 style="width: 100%; text-align: center; margin: 2rem 0; color: #666; font-weight: normal;">
+        No Upcoming Rides
+      </h2>
+    }
+  </div>
+</div>

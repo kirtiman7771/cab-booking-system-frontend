@@ -1,0 +1,86 @@
+<div class="modal-overlay">
+    <div class="dialog-box">
+        <div class="dialog-header">
+            <h2>Sign up for Vector</h2>
+            <button class="close-button" (click)="closeDialog()">×</button>
+        </div>
+
+        <p class="subtitle">Create your account to start booking rides with Vector</p>
+
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First name</label>
+                    <input id="firstName" type="text" formControlName="firstName" placeholder="First name" />
+                    <div class="error-message"
+                        *ngIf="registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched">
+                        First name is required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last name</label>
+                    <input id="lastName" type="text" formControlName="lastName" placeholder="Last name" />
+                    <div class="error-message"
+                        *ngIf="registrationForm.get('lastName')?.invalid && registrationForm.get('lastName')?.touched">
+                        Last name is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" formControlName="email" placeholder="Enter your email" />
+                <div class="error-message"
+                    *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+                    A valid email is required.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone number</label>
+                <input id="phone" type="text" formControlName="phone" placeholder="+91 (000) 123-4567" />
+
+                <div class="error-message"
+                    *ngIf="registrationForm.get('phone')?.invalid && registrationForm.get('phone')?.touched">
+
+                    <span *ngIf="registrationForm.get('phone')?.errors?.['required']">
+                        Phone number is required.
+                    </span>
+
+                    <span *ngIf="registrationForm.get('phone')?.errors?.['pattern']">
+                        Phone number must be exactly 10 digits.
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+                    <label for="passwordHash">Password</label>
+                    <input id="passwordHash" type="password" formControlName="passwordHash"
+                        placeholder="Enter your password" />
+                    <div class="error-message"
+                        *ngIf="registrationForm.get('passwordHash')?.invalid && registrationForm.get('passwordHash')?.touched">
+                        Password must be at least 6 characters.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm password</label>
+                    <input id="confirmPassword" type="password" formControlName="confirmPassword"
+                        placeholder="Confirm your password" />
+                    <div class="error-message"
+                        *ngIf="registrationForm.get('confirmPassword')?.invalid && registrationForm.get('confirmPassword')?.touched">
+                        Confirm password is required.
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary" [disabled]="registrationForm.invalid">Sign up</button>
+        </form>
+
+        <div class="login-link-container">
+            Already have an account? <a (click)="loginAsRider()" style="cursor: pointer;">Log in</a>
+        </div>
+    </div>
+</div>

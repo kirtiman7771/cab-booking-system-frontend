@@ -1,0 +1,170 @@
+<div *ngIf="ride" class="ride-details-wrapper">
+  <!-- Main Ride Card -->
+  <div class="ride-main-card">
+    <!-- Header -->
+    <div class="card-header-gradient">
+      <div class="header-top">
+        <h1 class="ride-title">
+          <i class="fas fa-car"></i>
+          Ride Details
+        </h1>
+        <span class="status-badge" [ngClass]="'status-badge-' + ride.status">
+          <i class="fas" [ngClass]="{
+            'fa-search': ride.status === rideStatus.LookingForDriver,
+            'fa-check-circle': ride.status === rideStatus.ConfirmedByDriver,
+            'fa-spinner fa-spin': ride.status === rideStatus.Ongoing,
+            'fa-flag-checkered': ride.status === rideStatus.Completed,
+            'fa-times-circle': ride.status === rideStatus.CancelledByUser || ride.status === rideStatus.CancelledByDriver
+          }"></i>
+          {{ determineStatusText(ride.status) }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Card Content -->
+    <div class="card-content">
+      <!-- Journey Section -->
+      <div class="journey-section">
+        <div class="location-card pickup-card">
+          <div class="location-header">
+            <i class="fas fa-circle location-icon"></i>
+            <p class="location-label">Pickup</p>
+          </div>
+          <p class="location-value">{{ ride.pickupLocation }}</p>
+        </div>
+
+        <div class="journey-connector">
+          <div class="connector-line"></div>
+          <i class="fas fa-route"></i>
+        </div>
+
+        <div class="location-card dropoff-card">
+          <div class="location-header">
+            <i class="fas fa-map-marker-alt location-icon"></i>
+            <p class="location-label">Drop-off</p>
+          </div>
+          <p class="location-value">{{ ride.dropLocation }}</p>
+        </div>
+      </div>
+
+      <!-- Metrics Grid -->
+      <div class="metrics-grid">
+        <div class="metric-card fare-card">
+          <div class="metric-icon">
+            <i class="fas fa-rupee-sign"></i>
+          </div>
+          <div class="metric-content">
+            <p class="metric-label">Fare</p>
+            <p class="metric-value">{{ ride.fare | currency:'INR':'symbol' }}</p>
+          </div>
+        </div>
+
+        <div class="metric-card time-card">
+          <div class="metric-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="metric-content">
+            <p class="metric-label">Date & Time</p>
+            <p class="metric-value">{{ ride.dateTime | date:'short' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Driver Details Card -->
+  <app-driver-details 
+    *ngIf="ride.status !== rideStatus.CancelledByUser && !driverDetailsLoading && userType !== 'driver'" 
+    [driverId]="driverId"
+    class="driver-card-wrapper">
+  </app-driver-details>
+
+  <!-- Actions Card -->
+  <div class="actions-card">
+    <div class="actions-container">
+      <!-- Rider Actions -->
+      <ng-container *ngIf="userType === 'rider'">
+        <button 
+          *ngIf="ride.status !== rideStatus.Completed && ride.status !== rideStatus.CancelledByUser && ride.status !== rideStatus.Ongoing" 
+          class="action-btn cancel-btn" 
+          [disabled]="isCancelling"
+          (click)="showCancelConfirmation()">
+          <i class="fas fa-ban"></i>
+          <span>{{ isCancelling ? 'Cancelling...' : 'Cancel Ride' }}</span>
+        </button>
+        <button 
+          *ngIf="ride.status === rideStatus.Completed" 
+          class="action-btn" 
+          (click)="openReviewModal()">
+          <span>Give Rating</span>
+        </button>
+      </ng-container>
+
+      <!-- Driver Actions -->
+      <ng-container *ngIf="userType === 'driver'">
+        <!-- Accept Ride -->
+        <button 
+          *ngIf="ride.status === rideStatus.LookingForDriver || ride.status === rideStatus.CancelledByDriver"
+          class="action-btn accept-btn" 
+          [disabled]="isAcceptingRide"
+          (click)="showAcceptConfirmation()">
+          <i class="fas fa-check-circle"></i>
+          <span>{{ isAcceptingRide ? 'Accepting...' : 'Accept Ride' }}</span>
+        </button>
+
+        <!-- Start & Cancel -->
+        <div class="button-group" *ngIf="ride.status === rideStatus.ConfirmedByDriver">
+          <button 
+            class="action-btn start-btn" 
+            [disabled]="isStartingRide"
+            (click)="showStartConfirmation()">
+            <i class="fas fa-play"></i>
+            <span>{{ isStartingRide ? 'Starting...' : 'Start Ride' }}</span>
+          </button>
+          
+          <button
+            class="action-btn cancel-btn" 
+            [disabled]="isCancelling"
+            (click)="showCancelConfirmation()">
+            <i class="fas fa-ban"></i>
+            <span>{{ isCancelling ? 'Cancelling...' : 'Cancel' }}</span>
+          </button>
+        </div>
+        
+        <!-- Complete & Payment -->
+        <div class="button-group" *ngIf="ride.status === rideStatus.Ongoing">
+          <button 
+            class="action-btn complete-btn" 
+            [disabled]="isMarkingCompleted"
+            (click)="showMarkCompletedConfirmation()">
+            <i class="fas fa-flag-checkered"></i>
+            <span>{{ isMarkingCompleted ? 'Completing...' : 'Complete' }}</span>
+          </button>
+          
+          <button 
+            class="action-btn payment-btn"
+            (click)="goToPayment()">
+            <i class="fas fa-wallet"></i>
+            <span>Payment</span>
+          </button>
+        </div>
+
+        <!-- Payment Only -->
+        <button 
+          *ngIf="ride.status === rideStatus.Completed"
+          class="action-btn payment-btn"
+          (click)="goToPayment()">
+          <i class="fas fa-wallet"></i>
+          <span>Go to Payment</span>
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div *ngIf="!ride" class="loading-container">
+  <app-loading-screen></app-loading-screen>
+  <p class="loading-text">Loading ride details...</p>
+</div>

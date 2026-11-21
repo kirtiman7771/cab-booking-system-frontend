@@ -1,0 +1,97 @@
+/* .star-cb-group {
+  font-size: 0;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+
+.star-cb-group input {
+  display: none;
+}
+
+.star-cb-group label {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  text-align: center;
+  line-height: 2rem;
+  position: relative;
+}
+
+.star-cb-group label::before {
+  content: "☆";
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.star-cb-group input:checked ~ label::before,
+.star-cb-group input + label:hover ~ label::before,
+.star-cb-group input + label:hover::before {
+  content: "★";
+  color: #ffc107;
+  text-shadow: 0 0 1px #333;
+}
+
+.star-cb-group:hover label::before {
+  content: "☆";
+  color: #ccc;
+  text-shadow: none;
+}
+
+.star-cb-group:hover input + label:hover ~ label::before,
+.star-cb-group:hover input + label:hover::before {
+  content: "★";
+  color: #ffc107;
+  text-shadow: 0 0 1px #333;
+} */
+
+
+
+/* --- Star Rating System CSS (Crucial for UI) --- */
+.star-cb-group {
+  /* removes the radio button input from the flow */
+  font-size: 0;
+  unicode-bidi: bidi-override;
+  direction: rtl; /* Stars flow right-to-left */
+  display: flex;
+  justify-content: center;
+}
+.star-cb-group * {
+  font-size: 2rem; /* Size of the stars */
+}
+
+.star-cb-group > input {
+  display: none; /* Hide the actual radio input */
+}
+.star-cb-group > label {
+  /* Star character, uses a full star */
+  display: inline-block;
+  cursor: pointer;
+  color: #ccc; /* Default color: Grey */
+  margin: 0 0.1rem;
+}
+
+/* Base style for the stars (empty) */
+.star-cb-group > label:before {
+  content: '★'; /* Unicode for solid star */
+}
+
+/* Hover effect: Full star when hovering */
+.star-cb-group > input:checked ~ label,
+.star-cb-group:not(:checked) > label:hover,
+.star-cb-group:not(:checked) > label:hover ~ label {
+  color: #ffc107; /* Gold color for checked/hovered stars */
+}
+
+/* Permanent selection: Stars to the right of the checked input should also be gold */
+.star-cb-group > input:checked + label:hover,
+.star-cb-group > input:checked ~ label:hover,
+.star-cb-group > input:checked ~ label:hover ~ label,
+.star-cb-group > label:hover ~ input:checked ~ label {
+  color: #ffc107; /* Gold color for permanent selection */
+}

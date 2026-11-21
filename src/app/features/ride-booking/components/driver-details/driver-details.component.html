@@ -1,0 +1,48 @@
+<div class="driver-details-container">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-state">
+    <app-loading-screen></app-loading-screen>
+    <p class="loading-text">Fetching driver info...</p>
+  </div>
+
+  <!-- Driver Details -->
+  <div *ngIf="!loading && driverDetails" class="driver-card">
+    <div class="driver-header">
+      <div class="driver-avatar">
+        <i class="fas fa-user-circle"></i>
+      </div>
+      <div class="driver-title">
+        <h3 class="driver-name">{{ driverDetails.name }}</h3>
+        <span class="driver-label">Your Driver</span>
+      </div>
+    </div>
+
+    <div class="driver-info">
+      <div class="info-item">
+        <div class="info-icon">
+          <i class="fas fa-phone"></i>
+        </div>
+        <div class="info-content">
+          <span class="info-label">Phone</span>
+          <span class="info-value">{{ driverDetails.phone }}</span>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">
+          <i class="fas fa-car"></i>
+        </div>
+        <div class="info-content">
+          <span class="info-label">Vehicle</span>
+          <span class="info-value">{{ driverDetails.vehicleInfo }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Driver State -->
+  <div *ngIf="!loading && !driverDetails" class="no-driver-state">
+    <i class="fas fa-user-slash"></i>
+    <p>No driver assigned yet</p>
+  </div>
+</div>

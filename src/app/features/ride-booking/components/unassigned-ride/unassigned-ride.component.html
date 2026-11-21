@@ -1,0 +1,15 @@
+<div style="overflow-y: auto;" class="ride-list-container">
+    <div class="header">
+        <h1>Rides to Take</h1>
+        <button routerLink="/driver/upcoming-ride">Upcoming Rides</button>
+    </div>
+    
+    <div class="rides-wrapper">
+        @for (item of totalRides; track item.rideId) {
+        <app-ride-details [rideId]="item.rideId"></app-ride-details>
+        }
+        @empty {
+        <h1 style="text-align: center;">Empty Data</h1>
+        }
+    </div>
+</div>

@@ -1,0 +1,712 @@
+:host {
+  /* Professional Minimal Color Palette */
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+  --primary-light: #eff6ff;
+  
+  --success: #059669;
+  --success-light: #d1fae5;
+  
+  --warning: #d97706;
+  --warning-light: #fef3c7;
+  
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  
+  --info: #0891b2;
+  --info-light: #cffafe;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --text-disabled: #cbd5e1;
+  
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  
+  --border-color: #e2e8f0;
+  --divider: #f1f5f9;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  --spacing-xs: 6px;
+  --spacing-sm: 10px;
+  --spacing-md: 14px;
+  --spacing-lg: 18px;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.ride-details-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  /* padding: var(--spacing-md); */
+  background: var(--bg-secondary);
+  min-height: 0;
+}
+
+/* ========== LOADING STATE ========== */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: var(--spacing-md);
+}
+
+.loading-text {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* ========== MAIN CARD ========== */
+.ride-main-card {
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
+  border: 1px solid var(--border-color);
+}
+
+/* ========== HEADER ========== */
+.card-header-gradient {
+  /* background: var(--text-primary); */
+  background-color: rgb(43, 105, 58);
+  color: white;
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.ride-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.ride-title i {
+  font-size: 1.25rem;
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-badge i {
+  font-size: 0.75rem;
+}
+
+.status-badge-LookingForDriver,
+.status-badge-ConfirmedByDriver {
+  background: var(--info-light);
+  color: var(--info);
+}
+
+.status-badge-Ongoing {
+  background: var(--warning-light);
+  color: var(--warning);
+}
+
+.status-badge-Completed {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.status-badge-CancelledByUser,
+.status-badge-CancelledByDriver {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+/* ========== CARD CONTENT ========== */
+.card-content {
+  padding: var(--spacing-md);
+}
+
+/* ========== JOURNEY SECTION ========== */
+.journey-section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.location-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.location-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.location-icon {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.pickup-card .location-icon {
+  color: var(--success);
+}
+
+.dropoff-card .location-icon {
+  color: var(--danger);
+}
+
+.location-label {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin: 0;
+}
+
+.location-value {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.journey-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--spacing-xs);
+  flex-shrink: 0;
+  position: relative;
+  height: 50px;
+}
+
+.connector-line {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--success) 0%, var(--danger) 100%);
+  top: 0;
+}
+
+.journey-connector i {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+  background: var(--bg-tertiary);
+  padding: 2px;
+}
+
+/* ========== METRICS GRID ========== */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.metric-card {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  transition: all 0.15s ease;
+}
+
+.metric-card:hover {
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.metric-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+}
+
+.fare-card .metric-icon {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.time-card .metric-icon {
+  background: var(--info-light);
+  color: var(--info);
+}
+
+.metric-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.metric-label {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin: 0 0 2px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.metric-value {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========== DRIVER CARD ========== */
+.driver-card-wrapper {
+  margin-bottom: var(--spacing-md);
+}
+
+/* ========== ACTIONS CARD ========== */
+.actions-card {
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+}
+
+.actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.actions-card:empty,
+.actions-card:has(.actions-container:empty) {
+  display: none;
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-sm);
+}
+
+.action-btn {
+  padding: 10px var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.action-btn i {
+  font-size: 0.875rem;
+}
+
+.action-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.action-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.accept-btn {
+  background: var(--primary);
+  color: white;
+}
+
+.accept-btn:hover:not(:disabled) {
+  background: var(--primary-dark);
+}
+
+.start-btn {
+  background: var(--info);
+  color: white;
+}
+
+.start-btn:hover:not(:disabled) {
+  background: #0e7490;
+}
+
+.complete-btn {
+  background: var(--success);
+  color: white;
+}
+
+.complete-btn:hover:not(:disabled) {
+  background: #047857;
+}
+
+.payment-btn {
+  background: var(--warning);
+  color: white;
+}
+
+.payment-btn:hover:not(:disabled) {
+  background: #b45309;
+}
+
+.cancel-btn {
+  background: var(--danger);
+  color: white;
+}
+
+.cancel-btn:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+/* ========== MODALS ========== */
+.modern-modal .modal-content {
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: var(--spacing-md);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.modal-header.success-gradient {
+  background: var(--success);
+}
+
+.modal-header.danger-gradient {
+  background: var(--danger);
+}
+
+.modal-header.primary-gradient {
+  background: var(--primary);
+}
+
+.modal-header.info-gradient {
+  background: var(--info);
+}
+
+.modal-title {
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin: 0;
+}
+
+.modal-title i {
+  font-size: 1.125rem;
+}
+
+.modal-body {
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.modal-text {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.modal-warning {
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  background: var(--warning-light);
+  border-left: 3px solid var(--warning);
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+  margin: 0;
+}
+
+.modal-warning i {
+  color: var(--warning);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.modal-footer {
+  padding: var(--spacing-md);
+  border: none;
+  background: var(--bg-tertiary);
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.modal-footer .btn {
+  padding: 8px var(--spacing-md);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  transition: all 0.15s ease;
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.modal-footer .btn-outline-secondary {
+  background: transparent;
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.modal-footer .btn-outline-secondary:hover {
+  background: var(--bg-secondary);
+  border-color: var(--text-secondary);
+}
+
+.btn-success-gradient {
+  background: var(--success) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.btn-success-gradient:hover {
+  background: #047857 !important;
+}
+
+.btn-danger-gradient {
+  background: var(--danger) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.btn-danger-gradient:hover {
+  background: #b91c1c !important;
+}
+
+.btn-primary-gradient {
+  background: var(--primary) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.btn-primary-gradient:hover {
+  background: var(--primary-dark) !important;
+}
+
+.btn-info-gradient {
+  background: var(--info) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.btn-info-gradient:hover {
+  background: #0e7490 !important;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+  .ride-details-wrapper {
+    padding: var(--spacing-sm);
+  }
+
+  .card-header-gradient {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .ride-title {
+    font-size: 1.125rem;
+  }
+
+  .ride-title i {
+    font-size: 1.125rem;
+  }
+
+  .status-badge {
+    padding: 4px 8px;
+    font-size: 0.625rem;
+  }
+
+  .card-content {
+    padding: var(--spacing-sm);
+  }
+
+  .journey-section {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--spacing-sm);
+    gap: 0;
+  }
+
+  .journey-connector {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    padding: var(--spacing-xs) 0;
+    margin: var(--spacing-xs) 0;
+  }
+
+  .connector-line {
+    width: 100%;
+    height: 2px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .journey-connector i {
+    transform: rotate(90deg);
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card {
+    padding: var(--spacing-sm);
+  }
+
+  .metric-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .actions-card {
+    padding: var(--spacing-sm);
+  }
+
+  .button-group {
+    grid-template-columns: 1fr;
+  }
+
+  .action-btn {
+    font-size: 0.75rem;
+    padding: 9px var(--spacing-sm);
+  }
+
+  .modal-footer {
+    flex-direction: column;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ride-title {
+    font-size: 1rem;
+  }
+
+  .ride-title i {
+    font-size: 1rem;
+  }
+
+  .header-top {
+    flex-wrap: wrap;
+  }
+
+  .location-value {
+    font-size: 0.8125rem;
+  }
+
+  .metric-label {
+    font-size: 0.625rem;
+  }
+
+  .metric-value {
+    font-size: 0.875rem;
+  }
+
+  .action-btn {
+    font-size: 0.75rem;
+    padding: 9px 10px;
+  }
+
+  /* Show text on mobile, hide icons */
+  .action-btn i:first-child {
+    display: none;
+  }
+
+  .action-btn span {
+    display: inline;
+  }
+}
+
+@media (max-width: 360px) {
+  .ride-details-wrapper {
+    padding: 8px;
+  }
+
+  .card-header-gradient,
+  .card-content,
+  .actions-card {
+    padding: 10px;
+  }
+
+  .journey-section {
+    padding: 8px;
+  }
+
+  .metric-card {
+    padding: 8px;
+  }
+
+  .action-btn {
+    padding: 8px;
+    font-size: 0.6875rem;
+  }
+}

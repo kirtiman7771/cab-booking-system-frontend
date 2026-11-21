@@ -1,0 +1,16 @@
+<div class="error-wrapper">
+    <div class="error-container">
+        <h1 class="error-code">{{ errorCode }}</h1>
+
+        <h2 class="error-tagline" [innerHTML]="errorTagline">
+        </h2>
+
+        <p class="error-message">{{ errorMessage }}</p>
+
+        <div class="error-actions">
+            <button class="btn-primary" (click)="goToHome()">
+                {{ actionButtonText }}
+            </button>
+        </div>
+    </div>
+</div>

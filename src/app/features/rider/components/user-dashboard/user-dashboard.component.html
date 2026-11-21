@@ -1,0 +1,61 @@
+<div class="dashboard-container">
+
+  <div class="dashboard-content">
+    <div class="summary-cards">
+      <div class="card">
+        <div class="icon-wrapper"><i class="fas fa-car-side"></i></div>
+        <div>
+          <h3>Total Rides</h3>
+          <p>{{ dashboardData?.totalRides || 0 }}</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="icon-wrapper"><i class="fas fa-inr"></i></div>
+        <div>
+          <h3>Total Spent</h3>
+          <p>{{ dashboardData?.totalSpent?.toFixed(2) || '0.00' }}</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="icon-wrapper"><i class="fas fa-star"></i></div>
+        <div>
+          <h3>Rating</h3>
+          <p>{{ dashboardData?.rating?.toFixed(1) || '0.0' }}</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="icon-wrapper"><i class="fas fa-clock"></i></div>
+        <div>
+          <h3>This Month</h3>
+          <p>{{ dashboardData?.totalRides || 0 }} Rides</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-sections">
+      <div class="left-section">
+        <app-ride-booking-home></app-ride-booking-home>
+      </div>
+
+      <div class="right-section">
+        <div class="card chart-card">
+          <h3>Ride Types (Total: {{ totalCarRides }})</h3>
+          <div class="chart-placeholder">
+            <div class="pie-chart-mock">
+              <div class="slice" [style.background]="getConicGradient()"></div>
+              <div *ngIf="totalCarRides > 0" class="center-text">{{ totalCarRides }}</div>
+              <div *ngIf="totalCarRides === 0" class="center-text">No Rides</div>
+            </div>
+
+            <div class="chart-legend">
+              <div *ngFor="let item of carTypePercentages">
+                <span class="legend-color" [style.backgroundColor]="item.color"></span>
+                {{ item.type }} ({{ item.count }}: {{ item.percentage.toFixed(1) }}%)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

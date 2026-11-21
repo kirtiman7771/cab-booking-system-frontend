@@ -1,0 +1,32 @@
+
+    body {
+      /* A subtle, modern gradient background */
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    .glass-card {
+      /* "Glassmorphism" effect */
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px); /* For Safari compatibility */
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    }
+    .icon-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+    }
+    .icon-circle .fa-check {
+      font-size: 3rem;
+    }
+    /* Simple hover effect for buttons */
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .btn {
+        transition: all 0.2s ease-in-out;
+    }

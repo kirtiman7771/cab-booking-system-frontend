@@ -1,0 +1,18 @@
+<div class="container-fluid form-container">
+  <form #rideBookForm="ngForm" class="booking-form" (ngSubmit)="onBookRideClick()">
+    <h2 class="text-center">Book Your Ride</h2>
+    <input type="text" placeholder="Enter pickup location" name="fromLocation" required [(ngModel)]="locationData.pickupLocation" />
+    <input type="text" placeholder="Enter drop location" name="toLocation" required [(ngModel)]="locationData.dropLocation" />
+
+    <div class="actions">
+      <button type="submit" class="btn-primary" [disabled]="rideBookForm.form.invalid || isLoading">
+        <span *ngIf="!isLoading">Book Ride</span>
+        <span *ngIf="isLoading">Loading...</span>
+      </button>
+    </div>
+  </form>
+
+  <app-ride-book-modal-container
+    *ngIf="showCarModal" (close)="closeCarModal()">
+  </app-ride-book-modal-container>
+</div>

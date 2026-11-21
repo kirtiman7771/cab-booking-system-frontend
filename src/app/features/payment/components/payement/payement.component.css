@@ -1,0 +1,68 @@
+.bg-light-green {
+    background-color: #f0f4f9;
+}
+
+.min-vh-100 {
+    min-height: 100vh;
+}
+
+
+.card {
+    border: none;
+    background-color: #fff;
+}
+
+.rounded-4 {
+    border-radius: 1.5rem !important;
+}
+
+.rounded-start-4 {
+    border-top-left-radius: 1.5rem !important;
+    border-bottom-left-radius: 1.5rem !important;
+}
+
+.bg-black {
+    background-color: #1a1a1a !important;
+}
+
+.btn-check:checked + .btn-outline-dark {
+    background-color: #212529;
+    color: #fff;
+    border-color: #212529;
+}
+
+.form-control.rounded-pill {
+    border-radius: 50rem !important;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+
+.alert-info {
+    color: #055160;
+    background-color: #cff4fc;
+    border-color: #b6effb;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 991.98px) {
+    .rounded-start-4 {
+        border-top-left-radius: 1.5rem !important;
+        border-bottom-left-radius: 0 !important;
+        border-top-right-radius: 1.5rem !important;
+    }
+}

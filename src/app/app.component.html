@@ -1,0 +1,18 @@
+<div class="app-nav">
+  <app-nav-bar></app-nav-bar>
+</div>
+
+<app-toast></app-toast>
+<app-confirmation-modal></app-confirmation-modal>
+<app-loading-screen></app-loading-screen>
+
+<ng-container *ngIf="!isSessionExpired">
+  <router-outlet></router-outlet>
+</ng-container>
+
+<ng-container *ngIf="isSessionExpired">
+  <app-error></app-error>
+  <router-outlet></router-outlet>
+</ng-container>
+
+<app-footer></app-footer>

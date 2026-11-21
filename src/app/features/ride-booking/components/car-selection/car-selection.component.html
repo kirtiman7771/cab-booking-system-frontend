@@ -1,0 +1,112 @@
+<div class="booking-details">
+  <!-- Header Section -->
+  <div class="booking-header">
+    <h2 class="booking-title">
+      <i class="fas fa-car"></i>
+      Select Your Ride
+    </h2>
+    
+    <div class="location-row">
+      <div class="location-item pickup">
+        <i class="fas fa-circle location-icon"></i>
+        <div class="location-info">
+          <span class="location-label">From</span>
+          <span class="location-value">{{ rideFormData.getLocation().pickupLocation }}</span>
+        </div>
+      </div>
+      <div class="journey-connector">
+        <div class="connector-line"></div>
+        <i class="fas fa-route"></i>
+      </div>
+      <div class="location-item dropoff">
+        <i class="fas fa-map-marker-alt location-icon"></i>
+        <div class="location-info">
+          <span class="location-label">To</span>
+          <span class="location-value">{{ rideFormData.getLocation().dropLocation }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="distance-badge">
+      <i class="fas fa-route"></i>
+      <span>{{ currentDistance }} km</span>
+    </div>
+  </div>
+  
+  <!-- Car List Section -->
+  <div class="car-list-section">
+    <h3 class="section-title">Available Rides</h3>
+    
+    <div class="car-list">
+      <!-- Error State -->
+      <div *ngIf="showTryAgainButton; else carFareList" class="error-state">
+        <i class="fas fa-exclamation-circle"></i>
+        <p>Failed to load available rides</p>
+        <button class="try-again-btn" (click)="loadCarFares()">
+          <i class="fas fa-redo"></i>
+          Try Again
+        </button>
+      </div>
+      
+      <!-- Car List -->
+      <ng-template #carFareList>
+        <div *ngIf="carsFairModels as cars; else loading" class="cars-grid">
+          <div 
+            class="car-card" 
+            *ngFor="let car of cars; trackBy: trackByCarId" 
+            (click)="onCardClick(car)"
+            [class.active]="selectedCar?.id === car.id">
+            
+            <!-- Selection Indicator -->
+            <div class="selection-check" *ngIf="selectedCar?.id === car.id">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <!-- Car Icon -->
+            <div class="car-icon">
+              <img [src]="getCarIconPath(car.type)" [alt]="car.type + ' icon'" />
+            </div>
+            
+            <!-- Car Info -->
+            <div class="car-info">
+              <h4 class="car-type">{{ car.type }}</h4>
+              <span class="car-category" [ngClass]="getCategoryColorClass(car.type)">
+                {{ getCarCategory(car.type) }}
+              </span>
+            </div>
+            
+            <!-- Car Description -->
+            <p class="car-description">{{ getCarDescription(car.type) }}</p>
+            
+            <!-- Price -->
+            <div class="car-price">
+              <span class="currency">₹</span>
+              <span class="amount">{{ car.finalPrice | number:'1.0-0' }}</span>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      
+      <!-- Loading State -->
+      <ng-template #loading>
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <p>Loading available rides...</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  
+  <!-- Confirm Button -->
+  <div class="action-container">
+    <button 
+      class="confirm-btn" 
+      [disabled]="!selectedCar || bookingRide" 
+      (click)="confirmCarSelection()">
+      <i class="fas" [ngClass]="bookingRide ? 'fa-spinner fa-spin' : 'fa-check'"></i>
+      <span *ngIf="!bookingRide">
+        {{ selectedCar ? 'Confirm ' + selectedCar.type : 'Select a Ride' }}
+      </span>
+      <span *ngIf="bookingRide">Booking...</span>
+    </button>
+  </div>
+</div>

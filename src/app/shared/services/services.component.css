@@ -1,0 +1,358 @@
+:root {
+    --bs-primary: #504d2c; 
+    --bs-primary-dark: #3b391f;
+    --bs-light: #f8f9fa;
+    --bs-gray-100: #f8f9fa;
+    --bs-gray-200: #e9ecef;
+    --bs-gray-600: #6c757d;
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:host {
+  background-color: #c8e6a1;
+}
+
+/* Override Bootstrap Primary Colors */
+.text-primary {
+    color: var(--bs-primary) !important;
+}
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: var(--transition-base);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: burlywood;
+    border-color: var(--bs-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(80, 77, 44, 0.3) !important;
+}
+
+.bg-primary-subtle {
+    background-color: rgba(80, 77, 44, 0.1) !important;
+}
+
+/* Section Styling */
+#services-section {
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f2f8e8;
+    position: relative;
+    overflow: hidden;
+}
+
+#services-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: radial-gradient(circle at 50% 0%, rgba(80, 77, 44, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Service Cards */
+.service-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    transition: var(--transition-base);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--bs-primary), var(--bs-primary-dark));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    border-color: transparent;
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Service Icon */
+.service-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(80, 77, 44, 0.1), rgba(80, 77, 44, 0.05));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: var(--transition-base);
+}
+
+.service-icon-wrapper i {
+    font-size: 2rem;
+    color: var(--bs-primary);
+    transition: var(--transition-base);
+}
+
+.service-card:hover .service-icon-wrapper {
+    background: var(--bs-primary);
+    transform: rotate(5deg) scale(1.05);
+}
+
+.service-card:hover .service-icon-wrapper i {
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Service Text */
+.service-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    letter-spacing: -0.3px;
+}
+
+.service-description {
+    color: var(--bs-gray-600);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.service-link {
+    color: var(--bs-primary);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    transition: var(--transition-base);
+}
+
+.service-link i {
+    transition: transform 0.3s ease;
+}
+
+.service-link:hover {
+    color: var(--bs-primary-dark);
+}
+
+.service-link:hover i {
+    transform: translateX(4px);
+}
+
+/* Why Choose Us Wrapper */
+.why-choose-wrapper {
+    margin-top: 4rem;
+    padding: 3rem 2rem;
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.feature-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    background: var(--bs-gray-100);
+    border-radius: 16px;
+    transition: var(--transition-base);
+    border: 1px solid transparent;
+}
+
+.feature-card:hover {
+    background: white;
+    border-color: var(--bs-gray-200);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transform: translateX(8px);
+}
+
+/* Feature Icon */
+.feature-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: var(--transition-base);
+}
+
+.feature-icon i {
+    font-size: 1.5rem;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+/* Feature Content */
+.feature-content {
+    flex: 1;
+}
+
+.feature-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.2px;
+}
+
+.feature-text {
+    color: var(--bs-gray-600);
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Badge Styling */
+.badge {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.75rem !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1199.98px) {
+    .why-choose-wrapper {
+        padding: 2.5rem 1.5rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .service-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .why-choose-content {
+        text-align: center;
+    }
+    
+    .why-choose-wrapper {
+        margin-top: 3rem;
+        padding: 2rem 1.5rem;
+        border-radius: 24px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #services-section {
+        padding: 3rem 0 !important;
+    }
+    
+    .display-4 {
+        font-size: 2rem !important;
+    }
+    
+    .display-6 {
+        font-size: 1.75rem !important;
+    }
+    
+    .service-card {
+        padding: 1.75rem 1.25rem;
+    }
+    
+    .service-icon-wrapper {
+        width: 70px;
+        height: 70px;
+        border-radius: 16px;
+    }
+    
+    .service-icon-wrapper i {
+        font-size: 1.75rem;
+    }
+    
+    .service-title {
+        font-size: 1.25rem;
+    }
+    
+    .feature-card {
+        padding: 1.5rem;
+        flex-direction: row;
+    }
+    
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .feature-icon i {
+        font-size: 1.25rem;
+    }
+    
+    .btn-lg {
+        padding: 0.875rem 2rem !important;
+        font-size: 1rem !important;
+    }
+    
+    .why-choose-wrapper {
+        padding: 1.5rem 1rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .service-card {
+        border-radius: 20px;
+        padding: 1.5rem 1rem;
+    }
+    
+    .why-choose-wrapper {
+        border-radius: 20px;
+    }
+    
+    .lead {
+        font-size: 1rem !important;
+    }
+}
+
+/* Animation Support (Optional - requires AOS library) */
+[data-aos] {
+    pointer-events: auto;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus States for Accessibility */
+.btn:focus,
+.service-link:focus {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .service-card,
+    .feature-card {
+        break-inside: avoid;
+    }
+}

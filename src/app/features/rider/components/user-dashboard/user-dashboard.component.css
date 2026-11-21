@@ -1,0 +1,408 @@
+
+:host {
+  display: block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f2f8e8;
+  min-height: 100vh;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.logo img {
+  margin-right: 10px;
+  height: 30px;
+  width: 30px;
+}
+
+.dashboard-text {
+  color: #888;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.header-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease-in-out;
+}
+
+.header-nav a i {
+  margin-right: 8px;
+  font-size: 18px;
+  color: #a0a0a0;
+}
+
+.header-nav a:hover,
+.header-nav a.active {
+  color: #fb2803;
+}
+
+.header-nav a:hover i,
+.header-nav a.active i {
+  color: #fb2803;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-icon {
+  font-size: 24px;
+  color: #a0a0a0;
+}
+
+.user-info span {
+  font-weight: 600;
+  color: #333;
+}
+
+.logout-link {
+  color: #fb2803;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.2s ease-in-out;
+}
+
+.logout-link:hover {
+  color: #d62000;
+}
+
+.dashboard-content {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.card p {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.card .icon-wrapper {
+  background-color: #f0f2f5;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: black;
+}
+
+.main-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 30px;
+}
+
+.left-section, .right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.chart-card h3, .booking-card h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.booking-form input[type="text"] {
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.booking-form input[type="text"]:focus {
+  outline: none;
+  border-color: #fb2803;
+}
+
+.booking-form input[placeholder="Enter drop location"] {
+  border-left: 5px solid #fb2803;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.form-check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #fb2803;
+}
+
+.form-check label {
+  font-size: 15px;
+  color: #555;
+}
+
+
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: #fb2803;
+  color: #ffffff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #d62000;
+}
+
+.btn-primary:disabled {
+  background-color: #f2a498;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+.btn-secondary:hover {
+  background-color: #d0d0d0;
+}
+
+.ride-message {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #e6ffe6; 
+  color: #3c763d; 
+  border: 1px solid #d6e9c6;
+  text-align: center;
+  font-size: 14px;
+}
+
+
+.chart-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.pie-chart-mock {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 5px #e0e0e0;
+}
+
+.pie-chart-mock .slice {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+}
+
+
+.chart-legend {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.chart-legend > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-color {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-color.standard { background-color: #3498db; }
+.legend-color.premium { background-color: #2ecc71; } 
+.legend-color.shared { background-color: #f1c40f; } 
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .header-nav {
+    display: none;
+  }
+  .dashboard-header {
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  .main-sections {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-header {
+    flex-direction: column;
+  }
+  .user-info {
+    margin-top: 15px;
+  }
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    flex-direction: column;
+  }
+}
+
+.pie-chart-mock {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: relative;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.slice {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    
+}
+
+.pie-chart-mock::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px; 
+    height: 70px;
+    border-radius: 50%;
+    background-color: white; 
+    z-index: 2; 
+}
+
+.center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+    font-weight: bold;
+    z-index: 3;
+}
+
+.chart-legend {
+    margin-top: 15px;
+    padding: 0 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.chart-legend > div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 8px;
+}

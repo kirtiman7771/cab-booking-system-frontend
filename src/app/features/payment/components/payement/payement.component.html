@@ -1,0 +1,117 @@
+<div class="d-flex justify-content-center align-items-center bg-light-green py-5 min-vh-100">
+    <div class="container my-5" style="max-width: 1000px;">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="row g-0">
+                <div class="col-12 col-lg-6 d-flex align-items-center p-5 bg-black rounded-start-4">
+                    <div class="text-white text-center">
+                        <img src="img.webp" alt="Secure Payment Illustration" class="img-fluid mb-4 rounded-4"
+                            style="width: 85%;">
+                        <h1 class="display-6 fw-bold mb-3 text-lg-start">Complete your Trip Payment</h1>
+                        <hr class="my-4 border-white-50">
+                        <div class="row text-white-50">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <h6 class="fw-bold"><i class="fa-solid fa-shield-halved me-2"></i>100% Secure Guarantee
+                                </h6>
+                                <small>Your payment is processed securely with end-to-end encryption.</small>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="fw-bold"><i class="fa-solid fa-check-circle me-2"></i>No Hidden Fees</h6>
+                                <small>The total fare is all you pay no surprises.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 p-5">
+
+                    <div *ngIf="paymentStatus === 'completed'"
+                        class="d-flex flex-column align-items-center justify-content-center text-center p-4">
+                        <i class="fa-solid fa-circle-check text-success mb-4" style="font-size: 5rem;"></i>
+                        <h2 class="text-success fw-bold mb-2">Payment Successful!</h2>
+                        <p class="lead mb-4">{{ message }}</p>
+                        <hr class="w-75">
+                        <button class="btn btn-primary w-75 py-3 fw-bold rounded-pill mt-4" (click)="viewReceipt()">
+                            View Receipt
+                        </button>
+                    </div>
+
+                    <div *ngIf="paymentStatus !== 'completed'">
+                        <div >
+                            <h4 class="fw-bold mb-4">SUMMARY</h4>
+                            <div class="d-flex justify-content-start mb-3">
+                                <span><i class="fa-solid fa-location-dot text-lg-start" style="color: #ea0606;"></i>|
+                                    &nbsp;</span>
+                                <span class="fw-semibold text-lg-start">{{ rideDetails.pickupLocation }}</span>
+                            </div>
+                            <div class="d-flex justify-content-start mb-2">
+                                <span><i class="fa-solid fa-location-dot text-lg-start" style="color: #09c01b;"></i>|
+                                    &nbsp;</span>
+                                <span class="fw-semibold align-items-start">{{ rideDetails.dropLocation }}</span>
+                            </div>
+                            <hr class="my-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4 class="mb-0">TOTAL</h4>
+                                <h4 class="mb-0 fw-bold">₹{{ rideDetails.fare }}</h4>
+                            </div>
+                            <h4 class="fw-bold mt-5 mb-3">PAYMENT</h4>
+                            <div class="d-flex gap-3 mb-4">
+                                <div class="form-check p-0">
+                                    <input class="btn-check" type="radio" name="paymentMethod" id="cash-radio"
+                                        value="cash" [(ngModel)]="selectedPaymentMethod">
+                                    <label class="btn btn-outline-dark rounded-3 px-4 py-2" for="cash-radio">
+                                        <i class="fa-solid fa-money-bill-wave me-2"></i> Cash
+                                    </label>
+                                </div>
+                                <div class="form-check p-0">
+                                    <input class="btn-check" type="radio" name="paymentMethod" id="upi-radio"
+                                        value="upi" [(ngModel)]="selectedPaymentMethod">
+                                    <label class="btn btn-outline-dark rounded-3 px-4 py-2" for="upi-radio">
+                                        <i class="fa-solid fa-qrcode me-2"></i> UPI
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div *ngIf="selectedPaymentMethod === 'upi'">
+                                <div class="d-flex flex-column align-items-center justify-content-center">
+                                    <p class="text-center text-muted">Scan the QR code to pay instantly via UPI or enter
+                                        your UPI ID below.</p>
+
+                                    <div class="input-group mb-4 w-100">
+                                        <span class="input-group-text rounded-start-pill py-2 px-3">&#64;</span>
+
+                                        <input type="text" class="form-control py-2 px-3" id="upiId"
+                                            placeholder="Enter UPI ID (e.g., yourname@bank)" [(ngModel)]="upiIDInput"
+                                            (ngModelChange)="upiIDVerified = false; upiVerificationStatus = 'pending'"
+                                            required>
+
+                                        <span *ngIf="upiVerificationStatus === 'verified'"
+                                            class="input-group-text text-success">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </span>
+                                        <span *ngIf="upiVerificationStatus === 'verifying'" class="input-group-text">
+                                            <span class="spinner-border spinner-border-sm" role="status"></span>
+                                        </span>
+                                        <button class="btn btn-outline-primary rounded-end-pill" type="button"
+                                            (click)="verifyUpiId()"
+                                            [disabled]="!upiIDInput || upiIDVerified || upiVerificationStatus === 'verifying'">
+                                            {{ upiVerificationStatus === 'verified' ? 'Verified' : 'Verify' }}
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary w-100 py-3 fw-bold rounded-pill mt-4"
+                                (click)="processPayment()"
+                                [disabled]="isPaymentButtonDisabled()">
+                                <span *ngIf="paymentStatus === 'processing'"
+                                    class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                {{ getButtonText() }}
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

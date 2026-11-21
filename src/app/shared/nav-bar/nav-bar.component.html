@@ -1,0 +1,67 @@
+<nav class="navbar" *ngIf="!(isLoggedIn$ | async)">
+
+  <div class="logo" routerLink="/" matTooltip="Go to Home Page">Vector</div>
+  <ul class="nav-links">
+    <li><a routerLink="/services">Services</a></li>
+    <!-- <li><a routerLink="/drive">Drive</a></li> -->
+    <!-- <li><a routerLink="/services">Business</a></li> -->
+    <li><a routerLink="/about">About</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a style="cursor : pointer" routerLink="/driver-registration" style="font-weight: 500;">Drive with Vector</a>
+    <a style="cursor: pointer;" (click)="openUserLogin()" class="btn-login">Login</a>
+    <div class="dropdown">
+      <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+        (click)="openUserRegistration()" class="btn btn-dark">Sign up</button>
+    </div>
+  </div>
+
+</nav>
+
+<nav class="navbar" *ngIf="(isLoggedIn$ | async) && (userType$ | async) === 'rider' ">
+  <div routerLink="/rider/dashboard" class="logo" matTooltip="Go to Dashboard">
+    Vector <span class="dashboard-text">Rider Dashboard</span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a routerLink="/rider/dashboard" matTooltip="Dashboard"><i class="fas fa-chart-line"></i> Overview</a></li>
+    <li><a routerLink="/rider/history" matTooltip="Ride History"><i class="fas fa-car"></i> Rides</a></li>
+    <li><a routerLink="/rider/upcoming-ride" matTooltip="Upcoming Rides"><i class="far fa-calendar-alt"></i> Upcoming</a></li>
+    <li><a routerLink="/rider/profile" matTooltip="View your profile"><i class="fas fa-user"></i> Profile</a></li>
+  </ul>
+
+  <div class="user-info">
+    <i class="fas fa-user-circle user-icon"></i>
+    <span>{{ userName }}</span>
+    <a (click)="logout()" class="logout-link" matTooltip="Logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+</nav>
+
+<nav class="navbar" *ngIf="(isLoggedIn$ | async) && (userType$ | async) === 'driver' ">
+  <div routerLink="/driver/dashboard" class="logo" matTooltip="Go to Dashboard">
+    Vector <span class="dashboard-text">Driver Dashboard</span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="/driver/dashboard" matTooltip="Dashboard"><i class="fas fa-chart-line"></i> Overview</a></li>
+    <li><a href="/driver/history" matTooltip="Ride History"><i class="fas fa-car"></i> Rides</a></li>
+    <!-- <li><a href="#"><i class="fas fa-map-marker-alt"></i> Locations</a></li> -->
+    <li><a href="/driver/unassigned-rides" matTooltip="Check for Available Rides"><i class="fas fa-car"></i> Available
+        Rides</a></li>
+    <li><a href="/driver/profile" matTooltip="View your profile"><i class="fas fa-user"></i> Profile</a></li>
+    <div class="form-check form-switch ms-3 me-3" title="Driver Availability Status">
+      <input class="form-check-input" type="checkbox" role="switch" id="driverStatusSwitch"
+        [checked]="isDriverAvailable" (change)="onStatusChange($event)">
+      <label class="form-check-label" for="driverStatusSwitch">
+        {{ isDriverAvailable ? 'Available' : 'Unavailable' }}
+      </label>
+    </div>
+
+  </ul>
+
+  <div class="user-info">
+    <i class="fas fa-user-circle user-icon"></i>
+    <span>{{ driverName }}</span>
+    <a (click)="logout()" class="logout-link" matTooltip="Logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+</nav>

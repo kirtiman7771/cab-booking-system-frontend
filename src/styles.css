@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+/* body{
+    background-image: url("/hero-bg2.png");
+    background-size: cover;
+} */
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+:root {
+    --vector-black: #000000;
+    --vector-yellow: #FFCC00;
+    --vector-dark-gray: #333333;
+    --vector-light-gray: #666666;
+    --vector-lighter-gray: #999999;
+    --vector-lightest-gray: #CCCCCC;
+    --vector-white: #FFFFFF;
+    --dark-green: #c8e6a1;
+    --light-green: #f2f8e8;
+}
+
+html,
+body {
+    height: 100%;
+    color: #f2f8e8;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: #f2f8e8;
+    background-color: #f2f8e8;
+    background-size: cover;
+
+}
+
+
+/* Snack-Bar Styling Starts*/
+
+.snackbar-success {
+  background-color: #4caf50 !important; 
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.snackbar-error {
+  background-color: #f44336 !important; 
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.snackbar-warning {
+  background-color: #ff9800 !important; 
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.mat-mdc-button.mat-mdc-snack-bar-action {
+  color: #fff !important;
+}
+
+/* Snack-Bar Styling Ends*/
+
+.modal-backdrop {
+  z-index: inherit !important;
+}

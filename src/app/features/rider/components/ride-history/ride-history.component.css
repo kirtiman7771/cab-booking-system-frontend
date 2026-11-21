@@ -1,0 +1,93 @@
+:host {
+  display: block;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f2f8e8;
+  min-height: 100vh;
+}
+
+.ride-card {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid var(--bs-primary);
+}
+
+.ride-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.ride-card-header {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.dot-icon {
+  display: inline-block;
+  /* Slightly smaller dot */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px; 
+  vertical-align: middle;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+}
+
+.pickup-dot {
+  background-color: #198754;
+  border-color: #a3e7c5;
+}
+
+.drop-dot {
+  background-color: #dc3545;
+  border-color: #f5a9b0;
+}
+
+.ride-status-badge {
+  letter-spacing: 0.5px;
+  font-size: 0.65remt;
+  font-weight: 700;
+  padding: 0.3em 0.6em !important; 
+}
+
+.location-text {
+  font-size: 0.95rem; 
+}
+
+.ride-card-footer {
+  margin-top: 0.5rem !important;
+  padding-top: 0.75rem !important;
+}
+
+.star-rating-display .bi-star-fill,
+.star-rating-display .bi-star {
+  font-size: 0.95rem;
+}
+
+.fare-display {
+  font-size: 1.2rem !important; 
+}
+
+.pagination .page-item .page-link {
+  color: var(--bs-primary);
+  border-radius: 5px;
+  margin: 0 4px;
+  border: 1px solid #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: white;
+  box-shadow: 0 2px 4px rgba(13, 110, 253, 0.2);
+}
+
+.badge-style {
+  border-radius: 0.7rem;
+  border: 1px solid black;
+  font-size: small;
+}
